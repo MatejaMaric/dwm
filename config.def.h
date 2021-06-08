@@ -64,6 +64,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
+static const char *roficmd[]  = { "rofi", "-show", "run", NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -113,7 +114,7 @@ static Key keys[] = {
   TAGKEYS( XK_p, 7)
 
   { MODKEY,                       XK_Return, spawn,           {.v = termcmd } },
-  { MODKEY,                       XK_r,      spawn,           {.v = dmenucmd } },
+  { MODKEY,                       XK_r,      spawn,           {.v = roficmd } },
   { MODKEY,                       XK_w,      killclient,      {0} },
 
   { MODKEY,                       XK_j,      focusstack,      {.i = +1 } },
