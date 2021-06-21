@@ -65,6 +65,13 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char *roficmd[]  = { "rofi", "-show", "run", NULL };
+static const char *scrotcmd[] = { "scrot", "-ze", "mv $f ~/stuff/pictures/screenshots/", NULL };
+static const char *volinc[] = { "bash", "-c", "~/.local/bin/sb_set.sh -i", NULL };
+static const char *voldec[] = { "bash", "-c", "~/.local/bin/sb_set.sh -d", NULL };
+static const char *voltoggle[] = { "bash", "-c", "~/.local/bin/sb_set.sh -t", NULL };
+static const char *nextlayout[] = { "bash", "-c", "~/.local/bin/sb_set.sh -n", NULL };
+static const char *unmountcmd[] = { "bash", "-c", "~/.local/bin/unmount_usb.sh", NULL };
+
 
 /*
  * Xresources preferences to load at startup
@@ -125,7 +132,14 @@ static Key keys[] = {
   { MODKEY,                       XK_2,      setlayout,       {.v = &layouts[1]} },
   { MODKEY,                       XK_3,      setlayout,       {.v = &layouts[2]} },
 
-  { MODKEY|ShiftMask,             XK_q,      quit,            {0} },
+  { MODKEY|ControlMask,           XK_q,      quit,            {0} },
+
+  { MODKEY|ControlMask,           XK_c,      spawn,           { .v = scrotcmd   } },
+  { MODKEY,                       XK_h,      spawn,           { .v = volinc     } },
+  { MODKEY,                       XK_n,      spawn,           { .v = voldec     } },
+  { MODKEY,                       XK_m,      spawn,           { .v = voltoggle  } },
+  { MODKEY,                       XK_space,  spawn,           { .v = nextlayout } },
+  { MODKEY,                       XK_e,      spawn,           { .v = unmountcmd } },
 };
 
 /* button definitions */
